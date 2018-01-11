@@ -14,7 +14,7 @@ saat_expired=$(($today + $masa_aktif_detik))
 tanggal_expired=$(date -u --date="1970-01-01 $saat_expired sec GMT" +%Y/%m/%d)
 tanggal_expired_display=$(date -u --date="1970-01-01 $saat_expired sec GMT" '+%d %B %Y')
 clear
-echo "กำลังเชื่อมต่ออยู่ byvpn.net..."
+echo "กำลังเชื่อมต่ออยู่ เฮียเบิร์ด.net..."
 sleep 0.4
 echo "การสร้างบัญชี..."
 sleep 0.3
@@ -33,7 +33,7 @@ usermod -e  $tanggal_expired $username
   echo -e "$password\n$password" | passwd $username
   clear
   echo " "
-  echo  "------------ พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) ------------" 
+  echo  "------------ AUTOSCRIPT 097-026-7262 BY เฮียเบิร์ด แงะตลอด ------------" 
   echo " "
   echo  " [+]  ไอพี         : $MYIP"
   echo  " [+]  ชื่อผู้ใช้     : $username"
@@ -47,6 +47,6 @@ usermod -e  $tanggal_expired $username
   echo  " [+]  SquidProxy   : 80,3128,8000,8080"
   echo  " [+]  Ovpn          : http://$MYIP:81/client.ovpn "
   echo " "
-  echo  "------------ พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) ------------" 
+  echo  "------------ AUTOSCRIPT 097-026-7262 BY เฮียเบิร์ด แงะตลอด ------------" 
   echo " "
 fi
