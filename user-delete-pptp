@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "Masukkan Username yang ingin anda hapus: " username
+read -p "ป้อนชื่อผู้ใช้ที่คุณต้องการลบ: " username
 grep -E "^$username" /etc/ppp/chap-secrets >/dev/null
 if [ $? -eq 0 ]; then
 # proses mengganti passwordnya
@@ -9,14 +9,14 @@ sed -i $username2 /var/lib/premium-script/data-user-pptp
 sed -i '/^$/d' /etc/ppp/chap-secrets
 sed -i '/^$/d' /var/lib/premium-script/data-user-pptp
 clear
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
   echo "-----------------------------------------------"
   echo -e "Username ${blue}$username${NC} Sudah berhasil di ${red}HAPUS${NC}."
-  echo -e "Akses Login untuk username ${blue}$username${NC} sudah dihapus"
+  echo -e "ชื่อผู้ใช้เข้าสู่ระบบสำหรับ ${blue}$username${NC} ถูกลบแล้ว"
   echo "-----------------------------------------------"
 else
-echo "Username tidak ditemukan di server anda"
+echo "ไม่พบชื่อผู้ใช้บนเซิร์ฟเวอร์ของคุณ"
     exit 1
 fi
