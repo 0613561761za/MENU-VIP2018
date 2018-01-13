@@ -10,7 +10,7 @@ fi
 
 #Cek ROOT
 if [[ $USER != "root" ]]; then
-	echo "Maaf, Anda harus menjalankan ini sebagai root"
+	echo "ขออภัยคุณต้องเรียกใช้งานนี้เป็น root"
 	exit
 fi
 
@@ -20,7 +20,7 @@ if [[ -e /etc/debian_version ]]; then
 elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 	OS=centos
 else
-	echo "Sepertinya Anda tidak menjalankan script ini pada sistem Debian, Ubuntu atau CentOS"
+	echo "ดูเหมือนว่าคุณไม่ได้เรียกใช้สคริปต์นี้ในระบบ Debian, Ubuntu หรือ CentOS"
 	exit
 fi
 
@@ -28,11 +28,11 @@ fi
 rm -f /root/openvpnport
 
 if [[ "$OS" = 'debian' ]]; then
-	read -p "Masukkan port OpenVPN yang diinginkan: " port
+	read -p "ใส่พอร์ต OpenVPN ที่ต้องการ: " port
 
 	openvpnport="$(netstat -nlpt | grep -i openvpn | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 	echo ""
-	echo -e "\e[34;1mPort OpenVPN sebelum diedit:\e[0m"
+	echo -e "\e[34;1mOpenVPN Port ก่อนการแก้ไข:\e[0m"
 
 	cat > /root/openvpnport <<-END
 	$openvpnport
@@ -60,7 +60,7 @@ if [[ "$OS" = 'debian' ]]; then
 			
 			netstat -nlpt | grep -i ssh | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk OpenSSH\e[0m"
+				echo -e "\e[031;1mPort $i ไม่สามารถเพิ่มได้ Port $i sudah digunakan untuk OpenSSH\e[0m"
 			fi
 			
 			netstat -nlpt | grep -i dropbear | grep -w "$i" > /dev/null
