@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/infouser
-echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/expireduser
-echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/alluser
+echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/infouser
+echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/expireduser
+echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/alluser
 chmod +x /usr/local/bin/infouser
 chmod +x /usr/local/bin/expireduser
 chmod +x /usr/local/bin/alluser
@@ -25,17 +25,17 @@ for((i=1; i<=$totalaccounts; i++ ))
            username=$username" " 
        done
        bulantahun=`echo $tglexp |awk -F" " '{print $2,$6}'`
-       echo "echo "BYVPN.NET- User : $username Expire Pada Tanggal : $tgl $bulantahun"" >> /usr/local/bin/alluser
+       echo "echo "เฮียเบิร์ด.com- User : $username Expire Pada Tanggal : $tgl $bulantahun"" >> /usr/local/bin/alluser
        todaystime=`date +%s`
        if [ $userexpireinseconds -ge $todaystime ] ;
            then
            timeto7days=$(( $todaystime + 604800 ))
                 if [ $userexpireinseconds -le $timeto7days ];
                 then                     
-                     echo "echo "BYVPN.NET- User : $username Akan Segera Expired Pada tanggal : $tgl $bulantahun"" >> /usr/local/bin/infouser
+                     echo "echo "เฮียเบิร์ด.com- User : $username จะหมดอายุทันที : $tgl $bulantahun"" >> /usr/local/bin/infouser
                 fi
        else
-       echo "echo "BYVPN.NET- User : $username Sudah Expired Pada Tanggal : $tgl $bulantahun"" >> /usr/local/bin/expireduser
+       echo "echo "เฮียเบิร์ด.com - User : $username หมดอายุในวันที่ : $tgl $bulantahun"" >> /usr/local/bin/expireduser
        passwd -l $username
        fi
 done
