@@ -10,23 +10,23 @@ saat_expired=$(($today + $masa_aktif_detik))
 tanggal_expired=$(date -u --date="1970-01-01 $saat_expired sec GMT" +%Y/%m/%d)
 tanggal_expired_display=$(date -u --date="1970-01-01 $saat_expired sec GMT" '+%d %B %Y')
 clear
-echo "Connecting to BYVPN.NET..."
+echo "Connecting to เฮียเบิร์ด.com..."
 sleep 0.5
-echo "Menambah Masa Aktif..."
+echo "ทำการเพิ่มเวาใช้งาน..."
 sleep 0.5
 passwd -u $username
 usermod -e  $tanggal_expired $username
   egrep "^$username" /etc/passwd >/dev/null
   echo -e "$password\n$password" | passwd $username
   clear
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
-  echo "Demikian Detail Account Yang Telah Diperpanjang"
+  echo "รายละเอียดบัญชีเพิ่มวันใช้งานดังนี้"
   echo "---------------------------------------"
   echo "   Username        : $username"
-  echo "   Masa aktif      : $masa_aktif Hari"
-  echo "   Tanggal Expired : $tanggal_expired_display"
+  echo "   Active time     : $masa_aktif Hari"
+  echo "   Expired         : $tanggal_expired_display"
   echo "--------------------------------------"
   echo " "
 
