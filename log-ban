@@ -1,17 +1,17 @@
 #!/bin/bash
-echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
 echo " "
 echo "===============================================";
 echo " ";
 if [ -e "/root/log-ban.txt" ]; then
 echo "User yang diban oleh user-ban adalah";
-echo "Waktu - Username - Jumlah Multilogin"
+echo "Time - Username - จำนวน Multilogin"
 echo "-------------------------------------";
 cat /root/log-ban.txt
 else
-echo " Tidak ada user yang melakukan pelanggaran"
-echo " Atau"
-echo " Script user-ban belum dijalankan"
+echo " ไม่มีผู้ใช้รายใดที่ถูกแบน"
+echo " หรือ"
+echo " ผู้ใช้สคริปต์ - ยังไม่ได้ดำเนินการแบนใด ๆ"
 fi
 echo " ";
 echo "===============================================";
