@@ -2,7 +2,7 @@
 if [ ! -e /usr/local/bin/user-auto-limit-script ]; then
 echo 'FATAL ERROR'
 echo 'Error Code: 404'
-echo 'Mohon update premium script Anda!'
+echo 'โปรดอัปเดต premium script ของคุณ!'
 fi
 
 echo "--------------------------------------------------"
@@ -23,42 +23,42 @@ read -p "Tulis Pilihan Anda (angka): " x
 if (($x<7)); then
 echo " "
 echo "--------------------------------------------------"
-read -p "jumlah multilogin maksimum yang diizinkan: " max
+read -p "จำนวน multilogin สูงสุดที่อนุญาต: " max
 
 fi
 if test $x -eq 1; then
 echo "*/3 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit 
-echo "User-Auto-Limit telah berhasil diset 3 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 3 นาที."
 elif test $x -eq 2; then
 echo "*/5 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil diset 5 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 5 นาที."
 elif test $x -eq 3; then
 echo "*/7 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil diset 7 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 7 นาที."
 elif test $x -eq 4; then
 echo "*/10 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil diset 10 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 9 นาที."
 elif test $x -eq 5; then
 echo "*/15 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil diset 15 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 15 นาที."
 elif test $x -eq 6; then
 echo "*/30 * * * *  root /usr/local/bin/user-auto-limit-script $max" > /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil diset 30 menit sekali."
+echo "User-Auto-Limit ตั้งค่าเรียบร้อยแล้ว 30 นาที."
 elif test $x -eq 7; then
 rm -f /etc/cron.d/user_auto_limit
-echo "User-Auto-Limit telah berhasil dimatikan."
+echo "User-Auto-Limit ถูกปิดเรียบร้อยแล้ว."
 elif test $x -eq 8; then
 if [ ! -e /root/log-limit.txt ]; then
-	echo "Belum ada user yang melakukan multilogin yang terdeteksi"
+	echo "ไม่มีผู้ใช้รายใดที่ตรวจพบ multilogin"
 	else 
-	echo 'Log user yang terdeteksi melakukan multilogin'
+	echo 'logs ของผู้ใช้ที่ตรวจพบ multilogin'
 	echo "-------"
 	cat /root/log-limit.txt
 fi
 elif test $x -eq 9; then
 echo "" > /root/log-limit.txt
-echo "Log berhasil dihapus!"
+echo "ลบบันทึกสำเร็จแล้ว!"
 else
-echo "Pilihan Tidak Terdapat Di Menu."
+echo "ไม่มีตัวเลือกในเมนู"
 exit
 fi
