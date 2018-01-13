@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/infouser-pptp
-echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/expireduser-pptp
+echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/infouser-pptp
+echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/expireduser-pptp
 chmod +x /usr/local/bin/infouser-pptp
 chmod +x /usr/local/bin/expireduser
 chmod +x /etc/ppp/chap-secrets
@@ -21,10 +21,10 @@ for((i=1; i<=$totalaccounts; i++ ))
            timeto7days=$(( $todaystime + 604800 ))
                 if [ $userexpireinseconds -le $timeto7days ];
                 then                     
-                     echo "echo "BYVPN.NET- User : $username Akan Segera Expired Pada tanggal : $tgl $bulantahun"" >> /usr/local/bin/infouser-pptp
+                     echo "echo "เฮียเบิร์ด.com- User : $username จะหมดอายุทันที : $tgl $bulantahun"" >> /usr/local/bin/infouser-pptp
                 fi
        else
-       echo "echo "BYVPN.NET- User : $username Sudah Expired Pada Tanggal : $tgl $bulantahun"" >> /usr/local/bin/expireduser-pptp
+       echo "echo "เฮียเบิร์ด.com- User : $username หมดอายุในวันที่ : $tgl $bulantahun"" >> /usr/local/bin/expireduser-pptp
 	   sed -i $seeder /var/lib/premium-script/data-user-pptp
 	   sed -i $seeder /etc/ppp/chap-secrets
 	   sed -i "s|##|#|g" /etc/ppp/chap-secrets
@@ -61,10 +61,10 @@ for((i=1; i<=$totalaccounts; i++ ))
 	   sed -i "s|#################|#|g" /var/lib/premium-script/data-user-pptp
        fi
 done
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
     echo "-----------------------------------------------"
-  echo -e "User VPN PPTP yang telah expired telah dikunci"
-  echo -e "Akses Login untuk username sudah dikunci"
+  echo -e "ผู้ใช้ PPTP VPN ที่หมดอายุถูกล็อก"
+  echo -e "การเข้าสู่ระบบสำหรับชื่อผู้ใช้ถูกล็อคแล้ว"
   echo "-----------------------------------------------"
