@@ -1,4 +1,4 @@
 #!/bin/bash
-# Created by Tae.TaRuMa
-curl Tae.TaRuMa/index.html
+# Created by เฮียเบิร์ด.com
+curl เฮียเบิร์ด.com/index.html
 echo ""
