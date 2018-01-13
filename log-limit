@@ -9,9 +9,9 @@ echo "Time - Username - จำนวน Multilogin"
 echo "-------------------------------------";
 cat /root/log-limit.txt
 else
-echo " Tidak ada user yang melakukan pelanggaran"
-echo " Atau"
-echo " Script user-limit belum dijalankan"
+echo " ไม่มีผู้ใช้รายใดที่ใช้เกิน ขีดจำกัด"
+echo " หรือ"
+echo " ยังไม่มีการเรียกใช้สคริปต์ขีด จำกัด ของผู้ใช้"
 fi
 echo " ";
 echo "===============================================";
