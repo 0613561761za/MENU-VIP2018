@@ -197,15 +197,15 @@ def help():
     help_msg = 'Usage: ps_mem [OPTION]...\n' \
         'Show program core memory usage\n' \
         '\n' \
-        '  -h, -help                   Show this help\n' \
-        '  -p <pid>[,pid2,...pidN]     Only show memory usage PIDs in the '\
+        '  -h, -help                   แสดงความช่วยเหลือนี้\n' \
+        '  -p <pid>[,pid2,...pidN]     แสดงเฉพาะการใช้หน่วยความจำ PID ใน '\
         'specified list\n' \
-        '  -s, --split-args            Show and separate by, all command line'\
+        '  -s, --split-args            แสดงและแยกตามบรรทัดคำสั่งทั้งหมด'\
         ' arguments\n' \
-        '  -t, --total                 Show only the total value\n' \
-        '  -d, --discriminate-by-pid   Show by process rather than by program\n' \
-        '  -S, --swap                  Show swap information\n' \
-        '  -w <N>                      Measure and show process memory every'\
+        '  -t, --total                 แสดงเฉพาะมูลค่ารวม\n' \
+        '  -d, --discriminate-by-pid   แสดงตามกระบวนการไม่ใช่ตามโปรแกรม\n' \
+        '  -S, --swap                  แสดงข้อมูลการแลกเปลี่ยน\n' \
+        '  -w <N>                      วัดและแสดงหน่วยความจำกระบวนการทุกอย่าง'\
         ' N seconds\n'
 
     return help_msg
