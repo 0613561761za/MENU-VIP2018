@@ -12,7 +12,7 @@ Username=`cat /etc/passwd | grep -Ew ^$1 | cut -d":" -f1`
 
 if [ "$Username" = "" ]
 then
-        echo "Username $1 Tidak dapat ditemukan"
+        echo "Username $1 ไม่พบ"
         exit 2
 fi
 
@@ -29,7 +29,7 @@ AccountExpiryDate=`chage -l $Username | grep "Account expires" | awk -F": " '{pr
 HomeDirSize=`du -hs $UserHomeDir | awk '{print $1}'`
 clear
 echo
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
   echo "Detail Account untuk username $Username"
