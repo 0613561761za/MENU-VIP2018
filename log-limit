@@ -1,11 +1,11 @@
 #!/bin/bash
-echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
 echo " "
 echo "===============================================";
 echo " ";
 if [ -e "/root/log-limit.txt" ]; then
 echo "User yang dikick oleh user-limit adalah";
-echo "Waktu - Username - Jumlah Multilogin"
+echo "Time - Username - จำนวน Multilogin"
 echo "-------------------------------------";
 cat /root/log-limit.txt
 else
