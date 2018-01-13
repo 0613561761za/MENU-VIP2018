@@ -2,7 +2,7 @@
 chmod +x /var/lib/premium-script/data-user-pptp
 
 
-read -p "Masukkan Username : " username
+read -p "ป้อนชื่อผู้ใช้ : " username
 grep -E "^$username" /var/lib/premium-script/data-user-pptp >/dev/null
 if [ $? -eq 0 ]; then
 userpass=`cat /var/lib/premium-script/data-user-pptp | grep "^$username" | awk '{print $3}'`
@@ -13,7 +13,7 @@ clear
 echo "loading..."
 sleep 1
 clear
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
   echo "Demikian Detail Account Untuk Username $Username"
@@ -23,6 +23,6 @@ clear
   echo "   Tanggal Expired : $tanggal_expired_display"
   echo "--------------------------------------"
 else
-echo "Username tidak ditemukan di server anda"
+echo "ไม่พบชื่อผู้ใช้บนเซิร์ฟเวอร์ของคุณ"
     exit 1
 fi
