@@ -1,11 +1,11 @@
 #!/bin/bash
-read -p "Masukkan Username yang ingin anda unlock: " username
+read -p "ป้อนชื่อผู้ใช้ที่คุณต้องการปลดล็อก: " username
 egrep "^$username" /etc/passwd >/dev/null
 if [ $? -eq 0 ]; then
 # proses mengganti passwordnya
 passwd -u $username
 clear
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
   echo "-----------------------------------------------"
@@ -14,6 +14,6 @@ clear
   echo "seperti semula"
   echo "-----------------------------------------------"
 else
-echo "Username tidak ditemukan di server anda"
+echo "ไม่พบชื่อผู้ใช้บนเซิร์ฟเวอร์ของคุณ"
     exit 1
 fi
