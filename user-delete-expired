@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ ! -f /usr/local/bin/deleteduser ]; then
-    echo "echo "Script Created By BYVPN.NET"" > /usr/local/bin/deleteduser
+    echo "echo "Script Created By เฮียเบิร์ด.com"" > /usr/local/bin/deleteduser
 	chmod +x /usr/local/bin/deleteduser
 fi
 hariini=`date +%d-%m-%Y`
