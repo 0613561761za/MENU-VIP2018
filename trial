@@ -1,14 +1,14 @@
 #!/bin/bash
 clear
-echo "Please Wait..."
+echo "โปรดรอ..."
 sleep 0.5
-echo "Generating Account..."
+echo "สร้างบัญชี..."
 sleep 0.5
-echo "Generating Host..."
+echo "กำลังสร้างโฮสต์..."
 sleep 0.5
-echo "Generating Username..."
+echo "กำลังสร้างชื่อผู้ใช้..."
 sleep 0.5
-echo "Generating Password..."
+echo "สร้างรหัสผ่าน..."
 sleep 1
 MYIP=$(wget -qO- ipv4.icanhazip.com)
 passrandom=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
@@ -20,10 +20,10 @@ if [ $? -eq 0 ]; then
   echo -e "$passrandom\n$passrandom" | passwd $username
   clear
   echo " "
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
-  echo "Demikian Detail Account Trial Anda"
+  echo "รายละเอียดบัญชีทดลองใช้ของคุณ"
   echo "------------------------------"
   echo "   Host     : $MYIP" 
   echo "   Username : $username"
@@ -39,10 +39,10 @@ else
   echo -e "$passrandom\n$passrandom" | passwd $username
   clear
   echo " "
-  echo "----------------------- พัฒนาโดย คุณเต้ ทารุมะ (เต้เล็ก) -----------------------"
+  echo "----------------------- AUTOSCRIPT 0970267262 BY เฮียเบิร์ด แงะตลอด -----------------------"
   echo " "
   echo " "
-  echo "Demikian Detail Account Trial Anda"
+  echo "รายละเอียดบัญชีทดลองใช้ของคุณ"
   echo "------------------------------"
   echo "   Host     : $MYIP"
   echo "   Username : $username"
