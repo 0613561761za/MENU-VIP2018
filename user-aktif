@@ -31,6 +31,6 @@ usermod -e  $tanggal_expired $username
   echo " "
 
 else
-echo -e "Username ${red}$username${NC} tidak ditemukan di VPS anda"
+echo -e "Username ${red}$username${NC} ไม่พบใน VPS ของคุณ"
 exit 0
 fi
