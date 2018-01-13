@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ $USER != "root" ]]; then
-	echo "Maaf, Anda harus menjalankan ini sebagai root"
+	echo "ขออภัยคุณต้องเรียกใช้งานนี้เป็น root"
 	exit
 fi
 
@@ -24,7 +24,7 @@ elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 	RCLOCAL='/etc/rc.d/rc.local'
 	chmod +x /etc/rc.d/rc.local
 else
-	echo "Sepertinya Anda tidak menjalankan script ini pada sistem Debian, Ubuntu atau CentOS"
+	echo "ดูเหมือนว่าคุณไม่ได้เรียกใช้สคริปต์นี้ในระบบ Debian, Ubuntu หรือ CentOS"
 	exit
 fi
 
@@ -209,9 +209,9 @@ case $x in
 	$RCLOCAL start
 ;;
 *)
-	echo "Gunakan perintah autokill 2, untuk limit 2 login saja"
-	echo "atau autokill 3, untuk melimit max 3 login"
-	echo "atau autokill 0, untuk no limit login"
+	echo "ใช้คำสั่ง autokill 2 สำหรับการเข้าสู่ระบบแบบ จำกัด 2 เท่านั้น"
+	echo "หรือ autokill 3 เพื่อสร้างการเข้าสู่ระบบสูงสุด 3 ครั้ง"
+	echo "หรือ autokill 0 สำหรับการเข้าสู่ระบบไม่ จำกัด"
 	echo ""
 ;;
 esac
