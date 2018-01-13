@@ -1,7 +1,7 @@
 #!/bin/bash
 #Cek ROOT
 if [[ $USER != "root" ]]; then
-	echo "Maaf. Anda harus menjalankan ini sebagai root"
+	echo "ขออภัย คุณต้องเรียกใช้งานนี้เป็น root"
 	exit
 fi
 
@@ -11,7 +11,7 @@ if [[ -e /etc/debian_version ]]; then
 elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 	OS=centos
 else
-	echo "Sepertinya Anda tidak menjalankan script ini pada sistem Debian, Ubuntu atau CentOS"
+	echo "ดูเหมือนว่าคุณไม่ได้เรียกใช้สคริปต์นี้ในระบบ Debian, Ubuntu หรือ CentOS"
 	exit
 fi
 
@@ -21,12 +21,12 @@ rm -f /tmp/opensshport
 
 if [[ "$OS" = 'debian' ]]; then
 	cd
-	read -p "Masukkan port OpenSSH yang dipisahkan dengan 'spasi': " port
+	read -p "แทรกพอร์ต OpenSSH คั่นด้วย "ช่องว่าง": " port
 	opensshport="$(netstat -ntlp | grep -i ssh | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 
 	#Display & Delete Old OpenSSH Port
 	echo ""
-	echo -e "\e[34;1mPort OpenSSH sebelum diedit:\e[0m"
+	echo -e "\e[34;1mพอร์ต OpenSSH ก่อนแก้ไข:\e[0m"
 	cat > /root/opensshport <<-END
 	$opensshport
 	END
@@ -49,25 +49,25 @@ if [[ "$OS" = 'debian' ]]; then
 			netstat -nlpt | grep -i ssh | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
 				sed -i "4 a\Port $i" /etc/ssh/sshd_config
-				echo -e "\e[032;1mPort $i berhasil ditambahkan\e[0m"
+				echo -e "\e[032;1mพอร์ต $i เพิ่มเรียบร้อยแล้ว\e[0m"
 			fi
 			netstat -nlpt | grep -i dropbear | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk Dropbear\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ Dropbear\e[0m"
 			fi
 			
 			netstat -nlpt | grep -i squid | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk Squid\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ Squid\e[0m"
 			fi
 			
 			netstat -nlpt | grep -i openvpn | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk OpenVPN\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ OpenVPN\e[0m"
 			fi
 		else
 			sed -i "4 a\Port $i" /etc/ssh/sshd_config
-			echo -e "\e[032;1mPort $i berhasil ditambahkan\e[0m"
+			echo -e "\e[032;1mพอร์ต $i เพิ่มเรียบร้อยแล้ว\e[0m"
 		fi
 	done
 
@@ -92,7 +92,7 @@ else
 #######################################################################################################################################
 #Jika Centos
 	cd
-	read -p "Masukkan port OpenSSH yang dipisahkan dengan 'spasi': " port
+	read -p "แทรกพอร์ต OpenSSH คั่นด้วย "ช่องว่าง": " port
 	opensshport="$(netstat -ntlp | grep -i ssh | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 
 	#Display & Delete Old OpenSSH Port
@@ -120,25 +120,25 @@ else
 			netstat -nlpt | grep -i ssh | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
 				sed -i "12 a\Port $i" /etc/ssh/sshd_config
-				echo -e "\e[032;1mPort $i berhasil ditambahkan\e[0m"
+				echo -e "\e[032;1mพอร์ต $i เพิ่มเรียบร้อยแล้ว\e[0m"
 			fi
 			netstat -nlpt | grep -i dropbear | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk Dropbear\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ Dropbear\e[0m"
 			fi
 			
 			netstat -nlpt | grep -i squid | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk Squid\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ Squid\e[0m"
 			fi
 			
 			netstat -nlpt | grep -i openvpn | grep -w "$i" > /dev/null
 			if [ $? -eq 0 ]; then
-				echo -e "\e[031;1mPort $i gagal ditambahkan. Port $i sudah digunakan untuk OpenVPN\e[0m"
+				echo -e "\e[031;1mพอร์ต $i ไม่สามารถเพิ่มได้. พอร์ต $i ใช้แล้วสำหรับ OpenVPN\e[0m"
 			fi
 		else
 			sed -i "12 a\Port $i" /etc/ssh/sshd_config
-			echo -e "\e[032;1mPort $i berhasil ditambahkan\e[0m"
+			echo -e "\e[032;1mพอร์ต $i เพิ่มเรียบร้อยแล้ว\e[0m"
 		fi
 	done
 
@@ -149,7 +149,7 @@ else
 	rm -f /root/opensshport
 	opensshport="$(netstat -nlpt | grep -i sshd | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 	echo ""
-	echo -e "\e[34;1mPort OpenSSH sesudah diedit:\e[0m"
+	echo -e "\e[34;1mพอร์ต OpenSSH หลังจากแก้ไข:\e[0m"
 	cat > /root/opensshport <<-END
 	$opensshport
 	END
