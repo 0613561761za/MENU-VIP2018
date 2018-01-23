@@ -1,52 +1,104 @@
 #!/bin/bash
-read -p " [+] ใส่ชื่อผู้ใช้งาน : " username
-egrep "^$username" /etc/passwd >/dev/null
-if [ $? -eq 0 ]; then
-echo " [+] มีผู้ใช้นี้แล้ว"
-exit 0
-else
-read -p " [+] ใส่รหัสผ่าน : " password
-read -p " [+] ใส่วันใช้งาน (30) : " masa_aktif
-MYIP=$(wget -qO- ipv4.icanhazip.com)
-today=`date +%s`
-masa_aktif_detik=$(( $masa_aktif * 86400 ))
-saat_expired=$(($today + $masa_aktif_detik))
-tanggal_expired=$(date -u --date="1970-01-01 $saat_expired sec GMT" +%Y/%m/%d)
-tanggal_expired_display=$(date -u --date="1970-01-01 $saat_expired sec GMT" '+%d %B %Y')
-clear
-echo "กำลังเชื่อมต่ออยู่ เฮียเบิร์ด.net..."
-sleep 0.4
-echo "การสร้างบัญชี..."
-sleep 0.3
-echo "กำลังสร้างโฮสต์..."
-sleep 0.2
-echo "การสร้างชื่อผู้ใช้ใหม่ของคุณ : $username"
-sleep 0.2
-echo "การสร้างรหัสผ่านสำหรับ : $username"
-sleep 1
+echo ""
+	echo -e "${color1} [+] ตัวอย่างการสร้างชื่อผู้ใช้ ${color3} : username password 31"
+	echo " [+] ชื่อผู้ใช้คือ username รหัสผ่านคือ password หมดอายุในอีก 31 วัน"
+	echo ""
+	read -p " [+] Username Password Expired : " Login Passwd TimeActive
+#	echo ""
+#	read -p "Password : " Passwd
+#	echo ""
+#	read -p "Expired (Day) : " TimeActive
 
+	IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+	useradd -e `date -d "$TimeActive days" +"%Y-%m-%d"` -s /bin/false -M $Login
+	exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
+	echo -e "$Passwd\n$Passwd\n"|passwd $Login &> /dev/null
 
-useradd $username
-usermod -s /bin/false $username
-usermod -e  $tanggal_expired $username
-  egrep "^$username" /etc/passwd >/dev/null
-  echo -e "$password\n$password" | passwd $username
-  clear
-  echo " "
-  echo  "------------ AUTOSCRIPT 097-026-7262 BY เฮียเบิร์ด แงะตลอด ------------" 
-  echo " "
-  echo  " [+]  ไอพี         : $MYIP"
-  echo  " [+]  ชื่อผู้ใช้     : $username"
-  echo  " [+]  รหัสผ่าน    : $password"
-  echo  " [+]  ใช้งานได้   : $masa_aktif วัน"
-  echo  " [+]  หมดอายุวันที่ : $tanggal_expired_display"
-  echo  " [+]  OpenVPN    : 1194 "
-  echo  " [+]  PPTPVPN    : 1732"
-  echo  " [+]  OpenSSH    : 22,143"
-  echo  " [+]  DropBear    : 109,110,443"
-  echo  " [+]  SquidProxy   : 80,3128,8000,8080"
-  echo  " [+]  Ovpn          : http://$MYIP:81/client.ovpn "
-  echo " "
-  echo  "------------ AUTOSCRIPT 097-026-7262 BY เฮียเบิร์ด แงะตลอด ------------" 
-  echo " "
-fi
+cd /etc/openvpn/
+cat > /etc/openvpn/$Login.ovpn <<END
+client
+dev tun
+proto tcp
+remote $IP:1194@static.tlcdn1.com/cdn.line-apps.com/line.naver.jp/nelo2-col.linecorp.com/mdm01.cpall.co.th/lvs.truehits.in.th/dl-obs.official.line.naver.jp 1194
+http-proxy $IP 8080
+http-proxy-retry
+connect-retry 1
+connect-timeout 120
+resolv-retry infinite
+route-method exe
+nobind
+ping 5
+ping-restart 30
+persist-key
+persist-tun
+persist-remote-ip
+mute-replay-warnings
+verb 3
+sndbuf 393216
+rcvbuf 393216
+push "sndbuf 393216"
+push "rcvbuf 393216"
+<auth-user-pass>
+$Login
+$Passwd
+</auth-user-pass>
+cipher none
+comp-lzo
+script-security 3
+key-proxy-DNS 8.8.8.8
+key-proxy-DNS 8.8.4.4
+management 127.0.0.1 5555
+
+<ca>
+-----BEGIN CERTIFICATE-----
+MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
+VQQGEwJJRDERMA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYD
+VQQKEwtKdWFsU1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMT
+C0p1YWxTU0guY29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJ
+ARYObWVAanVhbHNzaC5jb20wHhcNMTMxMTA4MTQwODA3WhcNMjMxMTA2MTQwODA3
+WjCBpzELMAkGA1UEBhMCSUQxETAPBgNVBAgTCFdlc3RKYXZhMQ4wDAYDVQQHEwVC
+b2dvcjEUMBIGA1UEChMLSnVhbFNTSC5jb20xFDASBgNVBAsTC0p1YWxTU0guY29t
+MRQwEgYDVQQDEwtKdWFsU1NILmNvbTEUMBIGA1UEKRMLSnVhbFNTSC5jb20xHTAb
+BgkqhkiG9w0BCQEWDm1lQGp1YWxzc2guY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDO0s4v72Y+V1z3XpkQD8hVjYyJk1PzpaNGpubtVXf7b/2vhvYBfE3X
+46NvpgQejsAI4rW7XWMZrAjFzQBPE0zDAt1O0ukvGRFvHr16jLuC3cZCn3oQJ0+v
+HD7Z16sUhKqLWRTGAf1LDvNR3eVmzzRfBF8L3h+ZGaQFW9gsw1tSSwIDAQABo4IB
+EDCCAQwwHQYDVR0OBBYEFA5gsoPi0yORhvAA38zCXOQhX4wYMIHcBgNVHSMEgdQw
+gdGAFA5gsoPi0yORhvAA38zCXOQhX4wYoYGtpIGqMIGnMQswCQYDVQQGEwJJRDER
+MA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYDVQQKEwtKdWFs
+U1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMTC0p1YWxTU0gu
+Y29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJARYObWVAanVh
+bHNzaC5jb22CCQDN0uI2i00AaDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUA
+A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
+1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
+T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
+-----END CERTIFICATE-----
+</ca>
+END
+
+	cp $Login.ovpn /home/vps/public_html/
+	cd
+	if [ ! -e /usr/local/bin/payload ]; then
+        wget -O /usr/local/bin/payload "https://raw.githubusercontent.com/nwqionnwkn/OPENEXTRA/master/Config/payload"
+	chmod +x /usr/local/bin/payload
+        fi
+	clear
+	cd
+	echo -e ""
+	echo -e "=================== Account ====================="
+	echo -e " [+] Download Config	: http://$IP:85/$Login.ovpn"
+	echo -e " [+] Username	  : $Login"
+	echo -e " [+] Password    : $Passwd"
+	echo -e " [+] Out of Date	: $exp"
+	echo -e " [+] IP         : $IP"
+	echo -e " [+] Proxy      : $IP"
+	echo -e " [+] Port Proxy : 8080"
+	echo -e ""
+  echo -e "หากต้องการรูปแบบข้อมูลหรือเพโหลด... ให้พิมพ์คำสั่ง payload"
+	echo -e "ไฟล์เดียวสามารถใช้ได้ทั้งเครือข่าย Truemove และ Dtac"
+  echo -e ""
+	echo -e "หมายเหตุ : สำหรับ Truemove ใช้ได้เฉพาะซิมแบบเติมเงินเท่านั้น"
+	echo -e "หมายเหตุ : สำหรับ Dtac ต้องสมัครโปรฯ Line ถึงจะสามารถใช้งาน VPN ได้"
+	echo -e "หมายเหตุ : ขณะนี้ยังไม่สามารถใช้งานผ่านทางคอมพิวเตอร์ได้ กำลังทำการแก้ไข"
+	echo -e "================================================"
+	echo -e ""
